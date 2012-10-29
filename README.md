@@ -1,0 +1,2 @@
+modules-manager-grails-plugin
+=============================
