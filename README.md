@@ -29,6 +29,23 @@ To re-create and force override resources modules
 
     grails refresh-modules --force
 
+Configuration
+=============
+
+conf/BuildConfig.groovy
+
+    ...
+    modules {
+
+        // Trigger modules refresh on project compile
+        refreshOnCompile = true
+
+        // force override resources modules on refresh on compile
+        forceOverride = true
+
+    }
+    ...
+
 
 Note
 ====
@@ -40,3 +57,4 @@ History
 =======
 
 0.1.0   Initial version
+0.2.0   Improvements
