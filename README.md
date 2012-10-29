@@ -22,7 +22,7 @@ Create resources modules
 
 Manager will create config/Modules**Resources.groovy and js/css files in web-app/modules/
 
-To force override re-create resources modules
+To re-create and force override resources modules
 
     grails refresh-modules --force
 
@@ -30,7 +30,7 @@ To force override re-create resources modules
 Note
 ====
 
-Module manager support resource
+Module manager only support web resources from webjars.org
 
 
 History
