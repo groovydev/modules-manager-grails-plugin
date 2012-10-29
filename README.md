@@ -1,6 +1,9 @@
 Modules Manager Grails Plugin
 ==============================
 
+Creates resources modules using packaged resources from maven central repository. Script consume jar packaged web js/css resources and produce resources DSL with web-app assets.
+
+
 Usage
 =====
 

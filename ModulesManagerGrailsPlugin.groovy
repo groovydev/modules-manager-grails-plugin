@@ -8,7 +8,7 @@ class ModulesManagerGrailsPlugin {
     def title = "Resources Modules Manager Plugin"
     def author = "Karol Balejko"
     def authorEmail = "kb@groovydev.com"
-    def description = 'Create resources modules from maven central dependencies.'
+    def description = 'Creates resources modules using packaged resources from maven central repository.'
     def documentation = "http://grails.org/plugin/modules-manager"
 
     def license = "APACHE"
