@@ -3,7 +3,10 @@ import org.apache.commons.lang.StringUtils
 includeTargets << grailsScript("_GrailsInit")
 includeTargets << grailsScript("_GrailsArgParsing")
 
-refreshModules = {forceOverride->
+target(refreshModules: "Refresh resources modules") {
+    depends(parseArguments)
+
+    def forceOverride = argsMap.force
 
     def workDir = "${grailsSettings.projectWorkDir}/packagemanager"
 
@@ -19,7 +22,7 @@ refreshModules = {forceOverride->
         def resourcesUrls = []
         def artifactId
 
-        if (new File("${workDir}/META-INF/resources/webjars").exists()) {
+        if (new File(workDir, "META-INF/resources/webjars").exists()) {
 
             // parse pom
             new File(workDir).eachFileRecurse {file->
@@ -31,7 +34,7 @@ refreshModules = {forceOverride->
                 }
             }
 
-            new File("${workDir}/META-INF/resources/webjars").eachFileRecurse {file->
+            new File(workDir, "META-INF/resources/webjars").eachFileRecurse {file->
                 if (file.file) {
 
                     def relpath = StringUtils.removeStart(file.path, "${workDir}/META-INF/resources/webjars/")
@@ -48,7 +51,7 @@ refreshModules = {forceOverride->
                             artifactId = module
                         }
 
-                        if (forceOverride || !new File("${grailsSettings.baseDir}/web-app/modules/${artifactId}/${path}").exists()) {
+                        if (forceOverride || !new File(grailsSettings.baseDir, "web-app/modules/${artifactId}/${path}").exists()) {
                             ant.copyfile(src: file, dest: "${grailsSettings.baseDir}/web-app/modules/${artifactId}/${path}")
                             event('CreatedFile', ["${grailsSettings.baseDir}/web-app/modules/${artifactId}/${path}"])
                             if (StringUtils.endsWithAny("modules/${artifactId}/${path}", ['.js','.css'] as String[])) {
@@ -80,12 +83,6 @@ refreshModules = {forceOverride->
 
         ant.delete(dir: workDir)
     }
-
 }
 
-target(main: "Refresh resources modules") {
-    depends(parseArguments)
-    refreshModules(argsMap.force)
-}
-
-setDefaultTarget(main)
+setDefaultTarget(refreshModules)
