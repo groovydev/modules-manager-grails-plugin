@@ -1,5 +1,5 @@
 class ModulesManagerGrailsPlugin {
-    def version = "0.2.0"
+    def version = "0.2.1"
     def grailsVersion = "2.0 > *"
     def title = "Resources Modules Manager Plugin"
     def author = "Karol Balejko"

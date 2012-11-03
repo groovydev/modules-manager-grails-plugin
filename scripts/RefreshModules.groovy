@@ -4,9 +4,9 @@ includeTargets << grailsScript("_GrailsInit")
 includeTargets << grailsScript("_GrailsArgParsing")
 includeTargets << new File("${modulesManagerPluginDir}/scripts/_RefreshModules.groovy")
 
-target(refreshModules: "Refresh resources modules") {
+target(main: "Refresh resources modules") {
     depends(parseArguments)
     refreshModules(argsMap.force)
 }
 
-setDefaultTarget(refreshModules)
+setDefaultTarget(main)

@@ -56,6 +56,8 @@ Module manager only support web resources from webjars.org
 History
 =======
 
-0.1.0   Initial version
+0.2.1   Fix java.lang.StackOverflowError
 
 0.2.0   Improvements
+
+0.1.0   Initial version
