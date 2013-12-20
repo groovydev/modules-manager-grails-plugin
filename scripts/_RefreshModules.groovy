@@ -15,6 +15,7 @@ refreshModules = {forceOverride->
 			
 		if (isResource) {
 			
+			println ("Found WebJar: " + jarfile.toString());
 			
 	        ant.unjar (src: jarfile, dest: workDir) {
 	            patternset excludes: "**/*.min.css **/*.min.js **/*-min.css **/*-min.js"
@@ -38,11 +39,12 @@ refreshModules = {forceOverride->
 	                }
 	            }
 	
+				String resourceDir = "${workDir}/META-INF/resources/webjars/".replace("\\", "/");
 	            new File(workDir, "META-INF/resources/webjars").eachFileRecurse {file->
 	                if (file.file) {
 	
-	                    def relpath = StringUtils.removeStart(file.path, "${workDir}/META-INF/resources/webjars/")
-	
+	                    def relpath = StringUtils.removeStart(file.path.replace("\\", "/"), resourceDir)
+					
 	                    def resourcePath = relpath
 	                    def webjarsMatcher = resourcePath =~ /([^\/]+)\/([^\/]+)\/(.+)/
 	                    if (webjarsMatcher.matches()) {
